@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <span>{{proName}}</span>
+            <span v-text="price"></span>
+            <input size="3" type="number" v-model.number="cnt">
+            <button @click="addcnt">+</button><button @click="minuscnt">-</button>
+           <div v-show="cnt>0"><button>장바구니</button><button>주문하기</button></div>
+            <div>합계<span>{{total}}</span></div>
+            </div>
+            </body>
+            <script>
+                Vue.createApp({
+                    data() {
+                        return {
+                            proName: '볼펜',
+                            price: 3000,
+                            cnt: 0
+                        }
+                    },
+                    computed: {
+                        total() {
+                            return this.price * this.cnt
+                        }
+                    },
+                    methods: {
+                        addcnt() {
+                            this.cnt++;
+                        },
+                        minuscnt() {
+                            if (this.cnt > 0) this.cnt--;
+                        }
+                    }
+                }).mount("#app");
+            </script>
+
+            </html>
